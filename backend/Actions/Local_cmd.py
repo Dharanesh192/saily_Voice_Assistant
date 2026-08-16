@@ -1,6 +1,3 @@
-# still need to create function for creating things, opening website and system application, and finally a function for running a programming file
-# Need to create if else block for selecting which function to call 
-
 import platform
 import subprocess
 import os
