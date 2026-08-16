@@ -1,0 +1,642 @@
+sentence,keyword,Function,label
+saily launch file manager,open file manager,Application,9
+please restart the computer,restart,system_commands,12
+how does speech recognition work,question,gemini,11
+open explorer,open file manager,Application,9
+please find information about neural networks,web search,websearch,22
+explain natural language processing,question,gemini,11
+make a new file called notes.txt,unknown,Unknown,20
+show me hidden files,show hidden files,system_commands,15
+start the calculator please,calculator,Application,0
+who is Saily,personality,gemini,10
+find this topic on the internet,web search,websearch,22
+how does machine learning work,question,gemini,11
+introduce yourself saily,personality,gemini,10
+put the computer to sleep,sleep,system_commands,16
+launch the calculator,calculator,Application,0
+can you explain how backpropagation works,question,gemini,11
+can you open the calculator,calculator,Application,0
+run this python file,runprogram,runprogram,13
+lock the workstation,lock,system_commands,6
+switch folder,change directory,system_commands,1
+lock the computer,lock,system_commands,6
+please investigate this online,web search,websearch,22
+could you search about neural networks,web search,websearch,22
+could you bring up the calculator app,calculator,Application,0
+move the directory,move directory,system_commands,7
+can you show my system information,system info,system_commands,17
+make the pc sleep,sleep,system_commands,16
+hey saily show current directory,current directory,system_commands,3
+saily can you show system info,system info,system_commands,17
+show the files here,show files,system_commands,14
+what is saily designed to do,personality,gemini,10
+bring up notepad,notepad,Application,8
+move this directory,move directory,system_commands,7
+can you find current information about linux,web search,websearch,22
+can you show my ip,ip address,system_commands,5
+please search online about neural networks,web search,websearch,22
+please reboot the system,restart,system_commands,12
+please run the program,runprogram,runprogram,13
+restart my pc,restart,system_commands,12
+what are my system details,system info,system_commands,17
+could you tell me what deep learning is,question,gemini,11
+look up the latest AI news,web search,websearch,22
+display files,show files,system_commands,14
+list the contents,show files,system_commands,14
+open notepad for me,notepad,Application,8
+what is Saily supposed to do,personality,gemini,10
+show hidden files,show hidden files,system_commands,15
+what is natural language processing used for,question,gemini,11
+move report.pdf into documents,unknown,Unknown,20
+execute the program,runprogram,runprogram,13
+can you open this website,website,website,23
+please show my ip address,ip address,system_commands,5
+list the hidden files,show hidden files,system_commands,15
+lock this computer,lock,system_commands,6
+start the calculator app,calculator,Application,0
+give me my system details,system info,system_commands,17
+who developed saily,personality,gemini,10
+saily launch task manager,task manager,Application,18
+please display system details,system info,system_commands,17
+saily get the hostname,hostname,system_commands,4
+what is the difference between deep learning and machine learning,question,gemini,11
+lock the machine,lock,system_commands,6
+sleep,sleep,system_commands,16
+can you search for neural networks,web search,websearch,22
+what is the current path,current directory,system_commands,3
+explain backpropagation,question,gemini,11
+open a command window,cmd,Application,2
+hey saily open calculator,calculator,Application,0
+why is data preprocessing important,question,gemini,11
+open this web page,website,website,23
+restart,restart,system_commands,12
+start terminal for me,terminal,Application,19
+reboot my computer,restart,system_commands,12
+open this website xyz.com,website,website,23
+open the notepad,notepad,Application,8
+can you search online about neural networks,web search,websearch,22
+can you check recent information online,web search,websearch,22
+open the web page,website,website,23
+relocate the directory,move directory,system_commands,7
+open terminal for me,terminal,Application,19
+get my computer name,hostname,system_commands,4
+are you my personal assistant,personality,gemini,10
+find the hostname,hostname,system_commands,4
+bring up cmd,cmd,Application,2
+could you reboot my pc,restart,system_commands,12
+can you look up neural networks,web search,websearch,22
+can you lock my pc,lock,system_commands,6
+tell me the current path,current directory,system_commands,3
+saily please display the files,show files,system_commands,14
+can you show the files,show files,system_commands,14
+tell me the computer name,hostname,system_commands,4
+what is your name,personality,gemini,10
+saily can you start the notepad,notepad,Application,8
+could you launch notepad for me,notepad,Application,8
+start a terminal,terminal,Application,19
+where is the current directory,current directory,system_commands,3
+restart the system,restart,system_commands,12
+tell me about your abilities,personality,gemini,10
+open the folders,open file manager,Application,9
+hey saily open this website,website,website,23
+give me the files,show files,system_commands,14
+saily launch cmd,cmd,Application,2
+get the calculator ready,calculator,Application,0
+why do we need training and testing data,question,gemini,11
+open calc,calculator,Application,0
+i want to use the calculator,calculator,Application,0
+find my computer name,hostname,system_commands,4
+tell me about saily,personality,gemini,10
+show my current location,current directory,system_commands,3
+bring up task manager,task manager,Application,18
+sleep my pc,sleep,system_commands,16
+switch to another directory,change directory,system_commands,1
+can you get notepad running,notepad,Application,8
+make a directory named college,unknown,Unknown,20
+search online for today's technology updates,web search,websearch,22
+find this on the web,web search,websearch,22
+how to learn python,question,gemini,11
+open the file manager,open file manager,Application,9
+could you explain machine learning,question,gemini,11
+what is this computer called,hostname,system_commands,4
+run the code,runprogram,runprogram,13
+please move the directory,move directory,system_commands,7
+how are neural networks trained,question,gemini,11
+change my current directory,change directory,system_commands,1
+where do you fit in my computer,personality,gemini,10
+i want you to open terminal,terminal,Application,19
+lock,lock,system_commands,6
+open this website,website,website,23
+hey saily open notepad,notepad,Application,8
+reboot the computer,restart,system_commands,12
+get my ip address,ip address,system_commands,5
+hey saily show my ip,ip address,system_commands,5
+what is saily,personality,gemini,10
+i want you to open file manager,open file manager,Application,9
+move the directory to another place,move directory,system_commands,7
+open the command prompt,cmd,Application,2
+what kind of AI assistant are you,personality,gemini,10
+what can you do saily,personality,gemini,10
+restart my machine,restart,system_commands,12
+tell me what kind of assistant you are,personality,gemini,10
+saily switch folder,change directory,system_commands,1
+saily launch terminal,terminal,Application,19
+launch file manager,open file manager,Application,9
+go to a different folder,change directory,system_commands,1
+what are my computer details,system info,system_commands,17
+search the web for python,web search,websearch,22
+tell me about your features,personality,gemini,10
+can you find information about neural networks,web search,websearch,22
+can you show system info,system info,system_commands,17
+look this topic up online,web search,websearch,22
+show what is in this directory,show files,system_commands,14
+move image.png to the pictures folder,unknown,Unknown,20
+saily launch vscode,vs code,Application,21
+start command prompt for me,cmd,Application,2
+look up the current news about space,web search,websearch,22
+run the terminal,terminal,Application,19
+put the system to sleep,sleep,system_commands,16
+please open notepad,notepad,Application,8
+go to another directory,change directory,system_commands,1
+why do neural networks need activation functions,question,gemini,11
+saily display hidden files,show hidden files,system_commands,15
+explain the idea behind backpropagation,question,gemini,11
+what can Saily help me with,personality,gemini,10
+create a folder called project,unknown,Unknown,20
+change folder,change directory,system_commands,1
+i need notepad open,notepad,Application,8
+saily show my current folder,current directory,system_commands,3
+how does gradient descent update weights,question,gemini,11
+can you restart my pc,restart,system_commands,12
+what do you do,personality,gemini,10
+tell me the hostname,hostname,system_commands,4
+show my computer information,system info,system_commands,17
+put my computer to sleep,sleep,system_commands,16
+are you a robot,personality,gemini,10
+make my computer sleep,sleep,system_commands,16
+can you list the hidden files,show hidden files,system_commands,15
+get system info,system info,system_commands,17
+run terminal,terminal,Application,19
+open xyz.com,website,website,23
+list hidden files,show hidden files,system_commands,15
+would you run calculator,calculator,Application,0
+open the calculator program,calculator,Application,0
+can you put the computer to sleep,sleep,system_commands,16
+move the folder somewhere else,move directory,system_commands,7
+please open terminal,terminal,Application,19
+system information,system info,system_commands,17
+define machine learning,question,gemini,11
+what can you control,personality,gemini,10
+please sleep the computer,sleep,system_commands,16
+can you do a search about neural networks,web search,websearch,22
+please bring up calculator,calculator,Application,0
+could you explain artificial intelligence,question,gemini,11
+can you explain the topic of deep learning,question,gemini,11
+could you look up the topic of neural networks,web search,websearch,22
+what files are here,show files,system_commands,14
+list files,show files,system_commands,14
+restart the pc,restart,system_commands,12
+start vs code,vs code,Application,21
+visit this website,website,website,23
+i want to lock the computer,lock,system_commands,6
+hey saily can you open the terminal,terminal,Application,19
+hey saily show system info,system info,system_commands,17
+saily tell me about my computer,system info,system_commands,17
+start task manager,task manager,Application,18
+can you change directory,change directory,system_commands,1
+who made you,personality,gemini,10
+what do you do as an assistant,personality,gemini,10
+what makes you a voice assistant,personality,gemini,10
+what is deep learning,question,gemini,11
+show files including hidden ones,show hidden files,system_commands,15
+what is reinforcement learning,question,gemini,11
+what is your name saily,personality,gemini,10
+find the computer ip,ip address,system_commands,5
+go into another folder,change directory,system_commands,1
+reboot my pc,restart,system_commands,12
+look up the latest updates,web search,websearch,22
+search the internet and find the answer,web search,websearch,22
+where am i,current directory,system_commands,3
+saily please restart my pc,restart,system_commands,12
+can you open calculator,calculator,Application,0
+can you open notepad,notepad,Application,8
+start the notepad please,notepad,Application,8
+display hidden files here,show hidden files,system_commands,15
+sleep the computer,sleep,system_commands,16
+run vscode,vs code,Application,21
+display hostname,hostname,system_commands,4
+open the file browser,open file manager,Application,9
+what is your purpose,personality,gemini,10
+show the computer name,hostname,system_commands,4
+hey saily open terminal,terminal,Application,19
+change to another folder,change directory,system_commands,1
+list hidden files here,show hidden files,system_commands,15
+show system details,system info,system_commands,17
+suspend my pc,sleep,system_commands,16
+go to google,website,website,23
+launch cmd,cmd,Application,2
+please list hidden files,show hidden files,system_commands,15
+move this folder somewhere else,move directory,system_commands,7
+what is a neural network,question,gemini,11
+what features do you have,personality,gemini,10
+can you research this topic on the web,web search,websearch,22
+secure the computer,lock,system_commands,6
+please lock the pc,lock,system_commands,6
+open file manager,open file manager,Application,9
+i want you to open task manager,task manager,Application,18
+what files are in this folder,show files,system_commands,14
+get calculator on screen,calculator,Application,0
+copy this file to my documents,unknown,Unknown,20
+are you an ai,personality,gemini,10
+search the web about neural networks,web search,websearch,22
+i want the notepad open,notepad,Application,8
+explain machine learning,question,gemini,11
+look this up on the web,web search,websearch,22
+can you explain neural networks,question,gemini,11
+get notepad on screen,notepad,Application,8
+hey saily search for neural networks,web search,websearch,22
+please launch the calculator,calculator,Application,0
+hey saily open file manager,open file manager,Application,9
+please tell me the hostname,hostname,system_commands,4
+what can you do,personality,gemini,10
+open this URL in the browser,website,website,23
+define neural network,question,gemini,11
+please show the files,show files,system_commands,14
+start the file manager,open file manager,Application,9
+what is my ip,ip address,system_commands,5
+look online and tell me the latest ai developments,web search,websearch,22
+rename main.py as app.py,unknown,Unknown,20
+show current directory,current directory,system_commands,3
+what can you help me with,personality,gemini,10
+execute main.py,runprogram,runprogram,13
+who built Saily,personality,gemini,10
+open vscode for me,vs code,Application,21
+show all hidden files,show hidden files,system_commands,15
+start this program,runprogram,runprogram,13
+what is my ip address,ip address,system_commands,5
+who made you saily,personality,gemini,10
+put the pc in sleep mode,sleep,system_commands,16
+launch terminal,terminal,Application,19
+open youtube.com,website,website,23
+open calculator,calculator,Application,0
+what are you,personality,gemini,10
+give me the current directory,current directory,system_commands,3
+run the script,runprogram,runprogram,13
+search for the latest news,web search,websearch,22
+look up recent neural network research,web search,websearch,22
+can you show the hostname,hostname,system_commands,4
+please open calculator,calculator,Application,0
+find current news about computers,web search,websearch,22
+please launch the terminal,terminal,Application,19
+i want the calculator open,calculator,Application,0
+run cmd,cmd,Application,2
+show my hostname,hostname,system_commands,4
+activate sleep mode,sleep,system_commands,16
+open the website in my browser,website,website,23
+can you start task manager,task manager,Application,18
+find online information about this topic,web search,websearch,22
+what is your role,personality,gemini,10
+hey saily move the directory,move directory,system_commands,7
+start the file browser,open file manager,Application,9
+please bring up the text editor,notepad,Application,8
+please open file manager,open file manager,Application,9
+open vscode,vs code,Application,21
+saily can you search the internet for neural networks,web search,websearch,22
+run task manager,task manager,Application,18
+can you start visual studio code,vs code,Application,21
+what is the computer hostname,hostname,system_commands,4
+open the code editor,vs code,Application,21
+open visual studio code,vs code,Application,21
+hey saily can you open the notepad,notepad,Application,8
+make the computer sleep,sleep,system_commands,16
+execute the script,runprogram,runprogram,13
+start visual studio code,vs code,Application,21
+what is my current directory,current directory,system_commands,3
+execute this python file,runprogram,runprogram,13
+give me system information,system info,system_commands,17
+lock the system,lock,system_commands,6
+open the task manager,task manager,Application,18
+create me a file called main.py,unknown,Unknown,20
+what is my computer name,hostname,system_commands,4
+change directory,change directory,system_commands,1
+check the web for recent python news,web search,websearch,22
+please tell me how backpropagation works,question,gemini,11
+can you open terminal,terminal,Application,19
+please lock the computer,lock,system_commands,6
+find the latest information about machine learning,web search,websearch,22
+open the terminal,terminal,Application,19
+launch explorer,open file manager,Application,9
+move this folder,move directory,system_commands,7
+who developed you,personality,gemini,10
+run the program for me,runprogram,runprogram,13
+show computer details,system info,system_commands,17
+can you search about neural networks,web search,websearch,22
+could you bring up the text editor,notepad,Application,8
+search the internet for recent updates on python,web search,websearch,22
+run visual studio code,vs code,Application,21
+open notepad,notepad,Application,8
+move a directory elsewhere,move directory,system_commands,7
+launch calculator,calculator,Application,0
+show hidden files here,show hidden files,system_commands,15
+open text editor,notepad,Application,8
+start notepad,notepad,Application,8
+run the task manager,task manager,Application,18
+hey saily can you reboot the system,restart,system_commands,12
+restart my computer,restart,system_commands,12
+search the internet for this,web search,websearch,22
+rename old.txt to new.txt,unknown,Unknown,20
+move to a different directory,change directory,system_commands,1
+how do neural networks learn,question,gemini,11
+visit the website,website,website,23
+go to another folder,change directory,system_commands,1
+can you find the latest information about neural networks,web search,websearch,22
+start file manager,open file manager,Application,9
+open explorer for me,open file manager,Application,9
+launch visual studio code,vs code,Application,21
+lock the screen,lock,system_commands,6
+saily execute this code,runprogram,runprogram,13
+run the calculator,calculator,Application,0
+i want to use notepad,notepad,Application,8
+tell me my ip,ip address,system_commands,5
+search online about neural network algorithms,web search,websearch,22
+give me the hostname,hostname,system_commands,4
+can you start the terminal,terminal,Application,19
+send the computer to sleep,sleep,system_commands,16
+tell me my current directory,current directory,system_commands,3
+show task manager,task manager,Application,18
+reboot the system,restart,system_commands,12
+please explain natural language processing,question,gemini,11
+hey saily open vs code,vs code,Application,21
+hey saily can you list the files,show files,system_commands,14
+can you show hidden files,show hidden files,system_commands,15
+please explain artificial intelligence,question,gemini,11
+saily reboot my pc,restart,system_commands,12
+show the hidden files in this folder,show hidden files,system_commands,15
+can you start command prompt,cmd,Application,2
+show my ip address,ip address,system_commands,5
+show current path,current directory,system_commands,3
+hey saily run this file,runprogram,runprogram,13
+start calculator,calculator,Application,0
+bring up terminal,terminal,Application,19
+can you open the notepad,notepad,Application,8
+execute this file,runprogram,runprogram,13
+can you search for current ai updates,web search,websearch,22
+create a new folder for my project,unknown,Unknown,20
+do a web search about neural networks,web search,websearch,22
+can you restart my computer,restart,system_commands,12
+put my pc to sleep,sleep,system_commands,16
+what type of assistant are you,personality,gemini,10
+can you move the folder,move directory,system_commands,7
+list everything in this folder,show files,system_commands,14
+hey saily put the pc to sleep,sleep,system_commands,16
+explain overfitting in machine learning,question,gemini,11
+copy main.py into the backend folder,unknown,Unknown,20
+display the computer name,hostname,system_commands,4
+can you run this file,runprogram,runprogram,13
+relocate the folder,move directory,system_commands,7
+launch the terminal,terminal,Application,19
+display system information,system info,system_commands,17
+change the directory,change directory,system_commands,1
+please launch vs code,vs code,Application,21
+what are neural networks,question,gemini,11
+tell me your purpose,personality,gemini,10
+please launch the task manager,task manager,Application,18
+transfer the directory,move directory,system_commands,7
+i need calculator open,calculator,Application,0
+show the computer ip,ip address,system_commands,5
+list the files,show files,system_commands,14
+move this file to the desktop,unknown,Unknown,20
+would you open calculator,calculator,Application,0
+start the computer again,restart,system_commands,12
+move a folder elsewhere,move directory,system_commands,7
+bring up file manager,open file manager,Application,9
+copy report.txt to the backup folder,unknown,Unknown,20
+search for information online,web search,websearch,22
+lock my pc,lock,system_commands,6
+introduce yourself,personality,gemini,10
+which directory am i in,current directory,system_commands,3
+open cmd,cmd,Application,2
+teach me the basics of neural networks,question,gemini,11
+reboot the pc,restart,system_commands,12
+move the folder,move directory,system_commands,7
+launch task manager,task manager,Application,18
+display my ip address,ip address,system_commands,5
+could you display system details,system info,system_commands,17
+can you investigate neural networks online,web search,websearch,22
+saily tell me my ip,ip address,system_commands,5
+move a folder,move directory,system_commands,7
+what is natural language processing,question,gemini,11
+hey saily open the command prompt,cmd,Application,2
+what can I ask you to do,personality,gemini,10
+create a calculator,calculator,Application,0
+saily lock my computer,lock,system_commands,6
+start the calculator,calculator,Application,0
+hey saily can you open visual studio code,vs code,Application,21
+what are you designed for,personality,gemini,10
+please change directory,change directory,system_commands,1
+search today's news about ai,web search,websearch,22
+start cmd,cmd,Application,2
+what is my hostname,hostname,system_commands,4
+tell me about yourself,personality,gemini,10
+search for today's news,web search,websearch,22
+get the ip address,ip address,system_commands,5
+can you start notepad,notepad,Application,8
+create a folder named saily inside this directory,unknown,Unknown,20
+who created saily,personality,gemini,10
+can you open vs code,vs code,Application,21
+show me the files,show files,system_commands,14
+restart the computer,restart,system_commands,12
+can you tell me what a neural network is,question,gemini,11
+open terminal,terminal,Application,19
+take me to this website,website,website,23
+please open task manager,task manager,Application,18
+what hidden files are here,show hidden files,system_commands,15
+start the notepad,notepad,Application,8
+why does gradient descent work,question,gemini,11
+switch directory,change directory,system_commands,1
+are you an ai assistant,personality,gemini,10
+how does a convolutional neural network work,question,gemini,11
+can you do a search on neural networks,web search,websearch,22
+lock my computer,lock,system_commands,6
+bring up vs code,vs code,Application,21
+bring up calculator,calculator,Application,0
+change where i am,change directory,system_commands,1
+please launch command prompt,cmd,Application,2
+saily list the files,show files,system_commands,14
+open github.com,website,website,23
+saily relocate the folder,move directory,system_commands,7
+execute this code,runprogram,runprogram,13
+can you tell me why neural networks need training,question,gemini,11
+execute the file for me,runprogram,runprogram,13
+look up the latest neural network news,web search,websearch,22
+open notepad now,notepad,Application,8
+launch vs code,vs code,Application,21
+open vs code,vs code,Application,21
+how can I train a neural network,question,gemini,11
+how can Saily assist me,personality,gemini,10
+show files,show files,system_commands,14
+could you list the files,show files,system_commands,14
+who are you saily,personality,gemini,10
+search online for the latest updates,web search,websearch,22
+can you tell me how neural networks work,question,gemini,11
+i want you to open calculator,calculator,Application,0
+can you open the file manager,open file manager,Application,9
+start task manager for me,task manager,Application,18
+can you check what is new in artificial intelligence,web search,websearch,22
+get the hostname,hostname,system_commands,4
+hey saily restart the computer,restart,system_commands,12
+find current information about ai,web search,websearch,22
+run the program,runprogram,runprogram,13
+can you show me the files,show files,system_commands,14
+tell me my system details,system info,system_commands,17
+display all hidden files,show hidden files,system_commands,15
+get the notepad ready,notepad,Application,8
+can you reboot the computer,restart,system_commands,12
+hey saily open cmd,cmd,Application,2
+find the latest news,web search,websearch,22
+give me my ip address,ip address,system_commands,5
+how does a neural network learn,question,gemini,11
+why do neural networks use activation functions,question,gemini,11
+display my network ip,ip address,system_commands,5
+launch notepad,notepad,Application,8
+saily launch calculator,calculator,Application,0
+search online for python,web search,websearch,22
+move test.py to the project directory,unknown,Unknown,20
+can you start calculator,calculator,Application,0
+saily launch notepad,notepad,Application,8
+run main.py,runprogram,runprogram,13
+hey saily lock the computer,lock,system_commands,6
+launch command prompt,cmd,Application,2
+run file manager,open file manager,Application,9
+get my system information,system info,system_commands,17
+find some information on the internet about transformers,web search,websearch,22
+who created you,personality,gemini,10
+launch this website,website,website,23
+would you run notepad,notepad,Application,8
+show all files,show files,system_commands,14
+please look up neural networks,web search,websearch,22
+launch the task manager,task manager,Application,18
+hey saily can you open the calculator,calculator,Application,0
+run notepad,notepad,Application,8
+restart the machine,restart,system_commands,12
+open task manager for me,task manager,Application,18
+launch calculator please,calculator,Application,0
+run this file,runprogram,runprogram,13
+start the task manager,task manager,Application,18
+tell me about your functions,personality,gemini,10
+please show computer information,system info,system_commands,17
+show the directory i am in,current directory,system_commands,3
+can you explain machine learning,question,gemini,11
+could you teach me what supervised learning is,question,gemini,11
+introduce Saily to me,personality,gemini,10
+i want you to open vs code,vs code,Application,21
+suspend the system,sleep,system_commands,16
+start vscode,vs code,Application,21
+display current path,current directory,system_commands,3
+open command prompt,cmd,Application,2
+open my files,open file manager,Application,9
+can you show my current directory,current directory,system_commands,3
+lock this pc,lock,system_commands,6
+how to build a neural network,question,gemini,11
+how does backpropagation work,question,gemini,11
+move the directory somewhere else,move directory,system_commands,7
+show folder contents,show files,system_commands,14
+show hostname,hostname,system_commands,4
+can you explain the topic of natural language processing,question,gemini,11
+run the notepad,notepad,Application,8
+please show the current path,current directory,system_commands,3
+why is training data important,question,gemini,11
+hey saily show files,show files,system_commands,14
+hey saily show hostname,hostname,system_commands,4
+how do computers understand language,question,gemini,11
+tell me who you are,personality,gemini,10
+can you tell me how machine learning works,question,gemini,11
+rename report.txt to final_report.txt,unknown,Unknown,20
+start the text editor for me,notepad,Application,8
+open google.com,website,website,23
+copy data.csv to the backup directory,unknown,Unknown,20
+how does a neural network recognize patterns,question,gemini,11
+suspend the computer,sleep,system_commands,16
+go into a different directory,change directory,system_commands,1
+start terminal,terminal,Application,19
+can you search for information about neural networks,web search,websearch,22
+open cmd for me,cmd,Application,2
+tell me about my system,system info,system_commands,17
+hey saily can you open task manager,task manager,Application,18
+hey saily please start calculator,calculator,Application,0
+open calculator now,calculator,Application,0
+hey saily tell me my system details,system info,system_commands,17
+lock my system,lock,system_commands,6
+what kind of assistant are you,personality,gemini,10
+give me the hidden files,show hidden files,system_commands,15
+saily open xyz.com,website,website,23
+please launch the notepad,notepad,Application,8
+hey saily change directory,change directory,system_commands,1
+hey saily show hidden files,show hidden files,system_commands,15
+lock the pc,lock,system_commands,6
+transfer the folder,move directory,system_commands,7
+please bring up notepad,notepad,Application,8
+find my ip address,ip address,system_commands,5
+open the calculator,calculator,Application,0
+can you explain why neural networks overfit,question,gemini,11
+change the current folder,change directory,system_commands,1
+open calculator for me,calculator,Application,0
+can you get calculator running,calculator,Application,0
+could you launch calculator for me,calculator,Application,0
+would you open notepad,notepad,Application,8
+display current directory,current directory,system_commands,3
+can you explain what a neural network is,question,gemini,11
+show my ip,ip address,system_commands,5
+are you a robot assistant,personality,gemini,10
+can you list the files,show files,system_commands,14
+please explain the difference between AI and ML,question,gemini,11
+can you open task manager,task manager,Application,18
+create a file named pyt.py,unknown,Unknown,20
+make a file named hello.py in the current folder,unknown,Unknown,20
+can you search the topic of neural networks,web search,websearch,22
+launch the text editor please,notepad,Application,8
+lock the workstation now,lock,system_commands,6
+what are your abilities,personality,gemini,10
+can you open cmd,cmd,Application,2
+what is my current folder,current directory,system_commands,3
+please open this website,website,website,23
+move directory,move directory,system_commands,7
+go to this website,website,website,23
+display the folder contents,show files,system_commands,14
+what is the difference between ai and machine learning,question,gemini,11
+tell me your capabilities,personality,gemini,10
+open task manager,task manager,Application,18
+run calculator,calculator,Application,0
+saily can you start the calculator,calculator,Application,0
+hey saily please start notepad,notepad,Application,8
+tell me the ip address,ip address,system_commands,5
+saily sleep the computer,sleep,system_commands,16
+launch the notepad,notepad,Application,8
+how are you,personality,gemini,10
+open the basic text editor,notepad,Application,8
+display the ip address,ip address,system_commands,5
+can you explain how a transformer works,question,gemini,11
+find hidden files,show hidden files,system_commands,15
+who are you,personality,gemini,10
+change the name of notes.txt to notes.md,unknown,Unknown,20
+run command prompt,cmd,Application,2
+what is the purpose of an activation function,question,gemini,11
+please search for neural networks,web search,websearch,22
+open a terminal window,terminal,Application,19
+open the text editor please,notepad,Application,8
+display hidden files,show hidden files,system_commands,15
+start command prompt,cmd,Application,2
+display my system information,system info,system_commands,17
+what folder am i in,current directory,system_commands,3
+can you teach me about neural networks,question,gemini,11
+show the system information,system info,system_commands,17
+search online for this topic,web search,websearch,22
+show the file manager,open file manager,Application,9
+i want you to open notepad,notepad,Application,8
+run this script,runprogram,runprogram,13
+i want you to open cmd,cmd,Application,2
+hey saily open task manager,task manager,Application,18
+show system info,system info,system_commands,17
+what is the computer ip,ip address,system_commands,5
+what are your capabilities,personality,gemini,10
+look online for the latest developments,web search,websearch,22

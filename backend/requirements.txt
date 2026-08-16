@@ -1,0 +1,8 @@
+# Speech-to-Text
+faster-whisper
+# Microphone recording (local testing only)
+sounddevice
+# Saving microphone recordings as WAV
+scipy
+# Tavily for the web search
+tavily-python
