@@ -264,3 +264,15 @@ input {
   50% { opacity: 0; }
 }
 .animate-blink { animation: blink 1s infinite; }
+
+/* Hide scrollbars completely while preserving smooth scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

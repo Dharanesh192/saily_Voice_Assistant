@@ -19,7 +19,17 @@ def websearch(question):
             max_results=3,
             include_answer=True
         )
-        return res.get("answer", "No direct answer found.")
+        answer = res.get("answer")
+        if answer and len(str(answer).strip()) > 10:
+            return str(answer).strip()
+
+        results = res.get("results", [])
+        if results and len(results) > 0:
+            snippet = results[0].get("content", "").strip()
+            if snippet:
+                return snippet[:300]
+
+        return f"I researched '{question}' on the web: No direct answer found."
     except Exception as e:
         return f"Search error: {e}"
 

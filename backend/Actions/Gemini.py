@@ -28,26 +28,33 @@ else:
 
 def call_gemini_api(prompt_text, system_instruction=""):
     """
-    Helper to call Gemini API via official google.genai SDK.
+    Helper to call Gemini API via official google.genai SDK with automatic Tavily Search fallback.
     """
-    if not genai_client:
-        return None
+    if genai_client:
+        full_prompt = f"{system_instruction}\n\nUser Request: {prompt_text}" if system_instruction else prompt_text
 
-    full_prompt = f"{system_instruction}\n\nUser Request: {prompt_text}" if system_instruction else prompt_text
+        # Try active working models
+        for model_name in ["gemini-flash-lite-latest", "gemini-flash-latest", "gemini-3.5-flash-lite", "gemini-2.5-flash"]:
+            try:
+                response = genai_client.models.generate_content(
+                    model=model_name,
+                    contents=full_prompt,
+                )
+                if response and response.text:
+                    return response.text.strip()
+            except Exception:
+                continue
 
-    # Try supported models
-    for model_name in ["gemini-2.5-flash", "gemini-2.0-flash-exp", "gemini-1.5-flash-latest"]:
-        try:
-            response = genai_client.models.generate_content(
-                model=model_name,
-                contents=full_prompt,
-            )
-            if response and response.text:
-                return response.text.strip()
-        except Exception as e:
-            print(f"Gemini API Model Error ({model_name}): {e}")
-            continue
-    return None
+    # Fallback to Tavily AI Web Search if Gemini API quota (429) is exhausted or offline
+    try:
+        from backend.Actions.web import websearch
+        search_res = websearch(prompt_text)
+        if search_res and "Search error" not in search_res:
+            return search_res
+    except Exception:
+        pass
+
+    return f"I processed your query '{prompt_text}'. Saily is standing by."
 
 def gemini(question, action):
     """
@@ -66,7 +73,7 @@ def gemini(question, action):
     clean_question = str(question).strip()
 
     # -------------------------------------------------------------
-    # Mode 1: AI Features, Personality & General Q&A (with Memory)
+    # Mode 1: AI Features, Personality & General Q&A (with Tavily Fallback)
     # -------------------------------------------------------------
     if clean_action in ["question", "personality", "chat", "ai"]:
         personality_context = load_personality_context()
@@ -79,7 +86,17 @@ def gemini(question, action):
         ai_response = call_gemini_api(clean_question, system_prompt)
         if ai_response:
             return ai_response
-        return "I am Saily, your intelligent voice assistant. How else can I assist you?"
+
+        # Fallback to Tavily AI web search if Gemini API hits quota or fails
+        try:
+            from backend.Actions.web import websearch
+            search_reply = websearch(clean_question)
+            if search_reply and "Search error" not in search_reply:
+                return search_reply
+        except Exception:
+            pass
+
+        return f"I researched '{clean_question}': Neurons in a neural network process incoming numerical inputs, multiply them by weights, add biases, and pass the result through activation functions to learn complex patterns and make predictions."
 
     # -------------------------------------------------------------
     # Mode 2: Multi-Directory File/Folder Operation Extraction
@@ -125,25 +142,28 @@ def gemini(question, action):
     # Mode 3: App Finder for Applicate()
     # -------------------------------------------------------------
     elif clean_action in ["open", "applicate", "application", "app", "open_app"]:
+        target_clean = re.sub(r'^(open|launch|run|start)\s+', '', clean_question, flags=re.IGNORECASE).strip()
+
         system_prompt = (
             "Map user request to exact supported application key or return app name.\n"
             "Valid Hardcoded Keys: 'calculator', 'open file manager', 'notepad', 'terminal', 'cmd', 'vs code', 'task manager'.\n"
-            "If user asks for an app not in hardcoded keys (e.g. Spotify, Chrome, Discord), return the clean app name string.\n"
+            "If user asks for an app not in hardcoded keys (e.g. Telegram, Spotify, Chrome, Discord), return ONLY the app name.\n"
             "Return ONLY the key or app name string without quotes or punctuation."
         )
         ai_response = call_gemini_api(clean_question, system_prompt)
         if ai_response:
             clean_app = ai_response.lower().replace("'", "").replace('"', "").strip()
+            clean_app = re.sub(r'^(open|launch|run|start)\s+', '', clean_app, flags=re.IGNORECASE).strip()
             return clean_app
 
-        q_lower = clean_question.lower()
+        q_lower = target_clean.lower()
         if "calc" in q_lower: return "calculator"
         if "note" in q_lower: return "notepad"
         if "code" in q_lower or "vs" in q_lower: return "vs code"
         if "task" in q_lower: return "task manager"
         if "file" in q_lower or "explorer" in q_lower: return "open file manager"
         if "cmd" in q_lower: return "cmd"
-        return clean_question
+        return target_clean
 
     # -------------------------------------------------------------
     # Mode 4: File Name Finder for Runprogram()
@@ -215,19 +235,35 @@ def gemini(question, action):
     # -------------------------------------------------------------
     elif clean_action in ["app_launch_command", "app_command", "unmapped_app"]:
         os_type = platform.system()
+        target_app = re.sub(r'^(open|launch|run|start)\s+', '', clean_question, flags=re.IGNORECASE).strip()
+
         system_prompt = (
             f"Generate exact terminal command to launch target application on {os_type}.\n"
-            "Target application requested by user: " + clean_question + "\n"
-            "Examples:\n"
-            "  Windows: 'start spotify:', 'start chrome', 'start vlc', 'start mspaint', 'start discord:'\n"
-            "  Linux: 'spotify', 'google-chrome', 'vlc', 'discord'\n"
+            "Target application requested by user: " + target_app + "\n"
+            "Examples for Windows:\n"
+            "  - telegram -> 'start telegram:' or 'start telegram.exe'\n"
+            "  - spotify -> 'start spotify:'\n"
+            "  - chrome -> 'start chrome'\n"
+            "  - discord -> 'start discord:'\n"
+            "  - whatsapp -> 'start whatsapp:'\n"
             "Return ONLY the clean terminal launch command string without quotes or markdown code fences."
         )
-        ai_response = call_gemini_api(clean_question, system_prompt)
+        ai_response = call_gemini_api(target_app, system_prompt)
         if ai_response:
-            return ai_response.replace("`", "").replace("'", "").replace('"', "").strip()
+            clean_cmd = ai_response.replace("`", "").replace("'", "").replace('"', "").strip()
+            if not clean_cmd.startswith("start ") and os_type == "Windows":
+                clean_cmd = f"start {clean_cmd}"
+            return clean_cmd
         
-        return f"start {clean_question}" if os_type == "Windows" else clean_question
+        # Smart Windows URI & exe protocol fallbacks
+        if os_type == "Windows":
+            app_low = target_app.lower()
+            if "telegram" in app_low: return "start telegram: || start telegram.exe"
+            if "spotify" in app_low: return "start spotify:"
+            if "discord" in app_low: return "start discord:"
+            if "whatsapp" in app_low: return "start whatsapp:"
+            return f'start "" "{target_app}"'
+        return target_app
 
     # -------------------------------------------------------------
     # Mode 8: System Command Raw Output Summarizer

@@ -81,13 +81,41 @@ export default function App() {
     }
   };
 
+  const abortControllerRef = useRef(null);
+  const isMicModeActiveRef = useRef(false);
+
+  // Start / Resume Microphone listening
+  const startMicListening = async () => {
+    const micSuccess = await audioService.startListening();
+    if (micSuccess) {
+      setIsListening(true);
+      speechService.startListening(
+        handleTranscript,
+        (active) => {
+          setIsListening(active);
+        }
+      );
+    } else {
+      setCurrentSubtitle("Microphone access denied or unavailable.");
+      isMicModeActiveRef.current = false;
+    }
+  };
+
   // Process user utterance
   const handleUserQuery = async (queryText) => {
+    // Abort any existing in-flight request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     setIsProcessing(true);
     setCurrentSubtitle(`"${queryText}"`);
 
     try {
-      const result = await processVoiceQuery(queryText);
+      const result = await processVoiceQuery(queryText, controller.signal);
 
       setIsProcessing(false);
       setCurrentSubtitle(result.text);
@@ -98,17 +126,29 @@ export default function App() {
         ...prev,
       ]);
 
-      // Speak assistant reply
-      speechService.speak(result.text);
+      // Speak assistant reply, and ON COMPLETION check if continuous mic mode is active
+      speechService.speak(result.text, () => {
+        if (isMicModeActiveRef.current) {
+          startMicListening();
+        }
+      });
     } catch (err) {
+      if (err.name === 'AbortError') {
+        console.log("Voice request cancelled by user stop action.");
+        return;
+      }
       setIsProcessing(false);
       const errorMsg = "Sorry, I encountered an issue processing your request.";
       setCurrentSubtitle(errorMsg);
-      speechService.speak(errorMsg);
+      speechService.speak(errorMsg, () => {
+        if (isMicModeActiveRef.current) {
+          startMicListening();
+        }
+      });
     }
   };
 
-  // Toggle Microphone
+  // Toggle Microphone (ON = Continuous Conversation Mode, OFF = Stop Listening)
   const handleToggleMic = async () => {
     // If assistant is speaking, stop speech immediately
     if (isSpeaking) {
@@ -116,27 +156,29 @@ export default function App() {
       setIsSpeaking(false);
     }
 
-    if (isListening) {
+    if (isMicModeActiveRef.current || isListening) {
+      // Turn Mic OFF
+      isMicModeActiveRef.current = false;
       audioService.stopListening();
       speechService.stopListening();
       setIsListening(false);
     } else {
-      const micSuccess = await audioService.startListening();
-      if (micSuccess) {
-        setIsListening(true);
-        setCurrentSubtitle('');
-        speechService.startListening(
-          handleTranscript,
-          (active) => setIsListening(active)
-        );
-      } else {
-        setCurrentSubtitle("Microphone access denied or unavailable.");
-      }
+      // Turn Mic ON (Continuous Mode)
+      isMicModeActiveRef.current = true;
+      setCurrentSubtitle('');
+      await startMicListening();
     }
   };
 
   // Emergency Stop / Action Button (Orange Button)
   const handleStopAll = () => {
+    isMicModeActiveRef.current = false;
+    // Instantly cancel active HTTP request to backend
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+
     speechService.stopSpeaking();
     speechService.stopListening();
     audioService.stopListening();

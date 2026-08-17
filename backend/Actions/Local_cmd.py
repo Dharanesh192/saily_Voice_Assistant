@@ -1,6 +1,7 @@
 import platform
 import subprocess
 import os
+import re
 
 system_commands = {
     "show files": {
@@ -183,23 +184,25 @@ def create(action, name, target_dir=""):
 # For opening system applications (with Gemini fallback for unmapped apps)
 def Applicate(action):
     sys_type = platform.system()
-    action_key = str(action).lower().strip()
+    raw_action = str(action).strip()
+    clean_app = re.sub(r'^(open|launch|run|start)\s+', '', raw_action, flags=re.IGNORECASE).strip()
+    action_key = clean_app.lower()
 
     if action_key in Application:
         command = Application[action_key].get(sys_type)
     else:
         # Fallback to Gemini to find launch command for unmapped app
         from backend.Actions.Gemini import gemini
-        command = gemini(action_key, "app_launch_command")
+        command = gemini(clean_app, "app_launch_command")
 
     if not command:
-        return f"Could not find launch command for application '{action}'."
+        return f"Could not find launch command for application '{clean_app}'."
 
     try:
         subprocess.Popen(command, shell=True)
-        return f"'{action}' has been opened successfully."
+        return f"'{clean_app}' has been opened successfully."
     except Exception as e:
-        return f"Unexpected error launching '{action}': {e}"
+        return f"Unexpected error launching '{clean_app}': {e}"
 
 # For running programming files (with Gemini fallback for any language)
 def Getcom(name, ex):

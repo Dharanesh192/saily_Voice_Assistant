@@ -34,14 +34,16 @@ export default function Subtitles({ text, isListening, isSpeaking, isProcessing 
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 my-3 flex flex-col items-center justify-center z-10">
-      {/* Rollable / Scrollable Caption Text Box */}
+      {/* Rollable / Scrollable Caption Text Box (Scrollbars hidden) */}
       <div
         ref={scrollRef}
-        className="w-full px-4 py-2 text-center pointer-events-auto"
+        className="w-full px-4 py-2 text-center pointer-events-auto no-scrollbar"
         style={{
           maxHeight: '80px',
           overflowY: 'auto',
           scrollBehavior: 'smooth',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
         }}
       >
         <p className="text-base md:text-xl font-light tracking-wide text-zinc-200 leading-relaxed text-glow">

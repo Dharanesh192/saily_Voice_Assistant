@@ -640,3 +640,28 @@ show system info,system info,system_commands,17
 what is the computer ip,ip address,system_commands,5
 what are your capabilities,personality,gemini,10
 look online for the latest developments,web search,websearch,22
+what is the role of neurons in neural network,question,gemini,11
+what is a neural network,question,gemini,11
+explain activation function,question,gemini,11
+how do neural networks learn,question,gemini,11
+what is deep learning,question,gemini,11
+what is machine learning,question,gemini,11
+explain artificial intelligence,question,gemini,11
+what is backpropagation,question,gemini,11
+how does gradient descent work,question,gemini,11
+what is a loss function,question,gemini,11
+what is python,question,gemini,11
+explain recursion in programming,question,gemini,11
+what is an api,question,gemini,11
+how does web dev work,question,gemini,11
+what is cloud computing,question,gemini,11
+tell me a joke,question,gemini,11
+tell me a fun fact,question,gemini,11
+what is the capital of france,question,gemini,11
+who wrote hamlet,question,gemini,11
+what is the distance to the moon,question,gemini,11
+how do airplanes fly,question,gemini,11
+what is photosynthesis,question,gemini,11
+explain gravity,question,gemini,11
+what is relativity,question,gemini,11
+how does internet work,question,gemini,11

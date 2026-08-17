@@ -19,17 +19,24 @@ export const checkBackendHealth = async () => {
   return { online: false };
 };
 
-export const processVoiceQuery = async (queryText) => {
+export const processVoiceQuery = async (queryText, signal = null) => {
   const cleanQuery = queryText.trim().toLowerCase();
   
   // Send transcribed text from frontend STT directly to Python FastAPI backend endpoint
   try {
-    const response = await fetch(`${API_BASE_URL}/voice`, {
+    const fetchOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: queryText }),
-      signal: AbortSignal.timeout(10000),
-    });
+    };
+
+    if (signal) {
+      fetchOptions.signal = signal;
+    } else {
+      fetchOptions.signal = AbortSignal.timeout(12000);
+    }
+
+    const response = await fetch(`${API_BASE_URL}/voice`, fetchOptions);
 
     if (response.ok) {
       const data = await response.json();
@@ -40,6 +47,9 @@ export const processVoiceQuery = async (queryText) => {
       };
     }
   } catch (err) {
+    if (err.name === 'AbortError') {
+      throw err;
+    }
     console.log("FastAPI backend not reachable, utilizing Saily fallback routing:", err.message);
   }
 
