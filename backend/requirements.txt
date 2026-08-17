@@ -4,5 +4,12 @@ faster-whisper
 sounddevice
 # Saving microphone recordings as WAV
 scipy
-# Tavily for the web search
+# Tavily for web search
 tavily-python
+# Google Gemini AI SDK
+google-generativeai
+google-genai
+python-dotenv
+# FastAPI Server
+fastapi
+uvicorn

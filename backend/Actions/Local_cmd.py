@@ -3,9 +3,6 @@ import subprocess
 import os
 
 system_commands = {
-
-    # add change dir and move dir to the system commands
-
     "show files": {
         "Windows": "dir",
         "Linux": "ls"
@@ -17,7 +14,7 @@ system_commands = {
     },
 
     "current directory": {
-        "Windows": "pwd",
+        "Windows": "cd",
         "Linux": "pwd"
     },
 
@@ -80,7 +77,7 @@ create_command = {
 }
 
 Application = {
-     "calculator": {
+    "calculator": {
         "Windows": "calc",
         "Linux": "gnome-calculator"
     },
@@ -100,7 +97,7 @@ Application = {
         "Linux": "x-terminal-emulator"
     },
 
-   "cmd":{
+    "cmd": {
         "Windows": "start cmd",
         "Linux": "x-terminal-emulator"
     },
@@ -116,49 +113,21 @@ Application = {
     }
 }
 
-# For executing the system commands
-
+# For executing system commands
 def system(action):
-    system = platform.system()
+    sys_type = platform.system()
 
     if action not in system_commands:
         return "Unknown command"
 
-    command = system_commands[action].get(system)
+    command = system_commands[action].get(sys_type)
 
     if not command:
-        return f"{system} is not supported"
+        return f"{sys_type} is not supported"
 
     try:
-        result = subprocess.run(command, check = True, timeout = 60, shell = True, capture_output = True, text = True)
-        return  result.stdout.strip()
-
-    except subprocess.CalledProcessError as e:
-        return (e.stderr.strip() if e.stderr else str(e))
-
-    except subprocess.TimeoutExpired as e:
-        return "Command is time out after 60 seconds"
-
-    except Exception as e:
-        return f"Unexpected error {e}"
-
-# For creating files and folders
-
-def create(action, name):
-    system = platform.system()
-
-    if action not in create_command:
-        return "Unknown command"
-
-    command = create_command[action].get(system)
-
-    if not command:
-        return f"{system} is not supported"
-
-    try:
-        full_command = f"{command} {name}"
-        result = subprocess.run(full_command, check=True, timeout=60, shell=True, capture_output=True, text=True)
-        return result.stdout.strip() if result.stdout else f"{action} '{name}' created successfully."
+        result = subprocess.run(command, check=True, timeout=60, shell=True, capture_output=True, text=True)
+        return result.stdout.strip()
 
     except subprocess.CalledProcessError as e:
         return (e.stderr.strip() if e.stderr else str(e))
@@ -169,54 +138,98 @@ def create(action, name):
     except Exception as e:
         return f"Unexpected error: {e}"
 
-# For opening the website
+# For creating files, folders, and multi-directory navigation with Deletion Protection
+def create(action, name, target_dir=""):
+    # Deletion Protection Shield
+    if any(k in action.lower() or k in name.lower() for k in ["delete", "remove", "del", "rm", "unlink"]):
+        return "Permission is not granted for deleting things in the system"
 
+    sys_type = platform.system()
 
-# For opening the system application
+    if action not in create_command:
+        return "Unknown command"
 
-def Applicate(action):
-    system = platform.system()
-    if action not in Application:
-        return "Unknown application" # need to change
+    command = create_command[action].get(sys_type)
+
+    if not command:
+        return f"{sys_type} is not supported"
+
+    # Multi-directory handling (e.g. "create main.py in code folder")
+    if target_dir and target_dir.strip():
+        dir_path = target_dir.strip()
+        if not os.path.exists(dir_path):
+            try:
+                os.makedirs(dir_path, exist_ok=True)
+            except Exception:
+                pass
+        target_path = os.path.join(dir_path, name)
+    else:
+        target_path = name
+
     try:
-        command = Application[action].get(system)
-        if not command:
-            return f"{system} is not supported"
+        full_command = f'{command} "{target_path}"'
+        result = subprocess.run(full_command, check=True, timeout=60, shell=True, capture_output=True, text=True)
+        return result.stdout.strip() if result.stdout else f"{action} '{target_path}' created successfully."
 
-        subprocess.Popen(command, shell=True)
-        return f"'{action}' has been opened successfully 🥳."
+    except subprocess.CalledProcessError as e:
+        return (e.stderr.strip() if e.stderr else str(e))
+
+    except subprocess.TimeoutExpired as e:
+        return "Command timed out after 60 seconds"
+
     except Exception as e:
         return f"Unexpected error: {e}"
 
-# For running the programming files
+# For opening system applications (with Gemini fallback for unmapped apps)
+def Applicate(action):
+    sys_type = platform.system()
+    action_key = str(action).lower().strip()
 
-def Getcom(name,ex):
+    if action_key in Application:
+        command = Application[action_key].get(sys_type)
+    else:
+        # Fallback to Gemini to find launch command for unmapped app
+        from backend.Actions.Gemini import gemini
+        command = gemini(action_key, "app_launch_command")
+
+    if not command:
+        return f"Could not find launch command for application '{action}'."
+
+    try:
+        subprocess.Popen(command, shell=True)
+        return f"'{action}' has been opened successfully."
+    except Exception as e:
+        return f"Unexpected error launching '{action}': {e}"
+
+# For running programming files (with Gemini fallback for any language)
+def Getcom(name, ex):
     s = platform.system()
-    match ex :
+    match ex.lower():
         case ".py":
-                return f"python {name}.py" if s=="Windows" else f"python3 {name}.py"
+            return f"python {name}.py" if s == "Windows" else f"python3 {name}.py"
         case ".c":
-            return f"gcc {name}.c -o {name}.exe && {name}.exe" if s=="Windows" else f"gcc {name}.c -o {name}.exe && ./{name}"
+            return f"gcc {name}.c -o {name}.exe && {name}.exe" if s == "Windows" else f"gcc {name}.c -o {name}.exe && ./{name}"
         case ".cpp":
-            return f"g++ {name}.cpp -o {name}.exe && {name}.exe" if s=="Windows" else f"g++ {name}.cpp -o {name}.exe && ./{name}"
+            return f"g++ {name}.cpp -o {name}.exe && {name}.exe" if s == "Windows" else f"g++ {name}.cpp -o {name}.exe && ./{name}"
         case ".java":
-            return f"javac {name}.java && java {name}" if s=="Windows" else f"javac {name}.java && java {name}"
-        case ".js": 
-            return f"node {name}.js" if s=="Windows" else f"node {name}.js"
-        case ".ts": 
-            return f"tsc {name}.ts && node {name}.js" if s=="Windows" else f"tsc {name}.ts && node {name}.js"
-        case ".cs": 
-            return f"csc {name}.cs && {name}.exe" if s=="Windows" else f"mcs {name}.cs && mono {name}.exe"
+            return f"javac {name}.java && java {name}"
+        case ".js":
+            return f"node {name}.js"
+        case ".ts":
+            return f"tsc {name}.ts && node {name}.js"
+        case ".cs":
+            return f"csc {name}.cs && {name}.exe" if s == "Windows" else f"mcs {name}.cs && mono {name}.exe"
         case ".rs":
-            return f"rustc {name}.rs && {name}.exe" if s=="Windows" else f"rustc {name}.rs && ./{name}"
+            return f"rustc {name}.rs && {name}.exe" if s == "Windows" else f"rustc {name}.rs && ./{name}"
         case ".go":
-            return f"go build {name}.go && {name}.exe" if s=="Windows" else f"go build {name}.go && ./{name}"
+            return f"go build {name}.go && {name}.exe" if s == "Windows" else f"go build {name}.go && ./{name}"
         case _:
-            return "Gemini call" # Change this to the gemini function
+            from backend.Actions.Gemini import gemini
+            return gemini(f"{name}{ex}", "compiler_command")
 
 def Runcom(file_name, command):
-    if command == "Gemini call":
-        return "Called the gemini"
+    if not command:
+        return "Unable to determine compile command."
     try:
         result = subprocess.run(command, check=True, timeout=90, shell=True, capture_output=True, text=True)
         return result.stdout.strip() if result.stdout else f"Program '{file_name}' executed successfully."
@@ -226,21 +239,23 @@ def Runcom(file_name, command):
         return "Command took longer than expected"
     except Exception as e:
         return f"Unexpected error: {e}"
-        
-     
 
 def Runprogram(file):
     find = False
-    file_name = os.path.splitext(file)[0]
-    for dir_file in os.listdir('.'):
-        name, ext = os.path.splitext(dir_file)
-        if name.lower() == file_name.lower():
-            find = True
-            command = Getcom(file_name, ext)
+    file_name, file_ext = os.path.splitext(file)
+    if not file_ext:
+        # Search directory for file matching name
+        for dir_file in os.listdir('.'):
+            name, ext = os.path.splitext(dir_file)
+            if name.lower() == file_name.lower():
+                find = True
+                command = Getcom(name, ext)
+                return Runcom(name, command)
+    else:
+        # File extension provided explicitly
+        if os.path.exists(file):
+            command = Getcom(file_name, file_ext)
             return Runcom(file_name, command)
-    if not find:
-        return "File not exist in this directory"
 
-if __name__ == "__main__":
-    a = input("website: ")
-    print(Runprogram(a))
+    if not find:
+        return f"File '{file}' not found in current directory."
