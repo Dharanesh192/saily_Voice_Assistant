@@ -1,8 +1,13 @@
-from tavily import TavilyClient
 import webbrowser
+import os
+from dotenv import load_dotenv
+from tavily import TavilyClient
+
+load_dotenv()  # Load environment variables from .env file
 
 def websearch(question):
-    client = TavilyClient("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")
+    Client_AI = os.getenv("Tavily_AI")
+    client = TavilyClient(api_key=Client_AI)
     res = client.search(
         query = question,
         search_depth = "basic",

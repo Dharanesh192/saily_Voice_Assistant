@@ -1,15 +1,19 @@
 import sounddevice as sd
+import numpy as np
 from scipy.io.wavfile import write
 from faster_whisper import WhisperModel
 from backend.Decision.predict import predict_command
-
-# -----------------------------
-# Settings
-# -----------------------------
+import time
 
 SAMPLE_RATE = 16000
-RECORD_SECONDS = 8
+CHANNELS = 1
+
+SILENCE_DURATION = 2
+BLOCK_DURATION = 0.1
+THRESHOLD = 0.01
+
 AUDIO_FILE = "recorded_audio.wav"
+
 
 # -----------------------------
 # Load Whisper
@@ -25,55 +29,99 @@ model = WhisperModel(
 
 print("Whisper loaded.")
 
-# -----------------------------
-# Record microphone
-# -----------------------------
-
-print(f"\nSpeak for {RECORD_SECONDS} seconds...")
-
-audio = sd.rec(
-    int(RECORD_SECONDS * SAMPLE_RATE),
-    samplerate=SAMPLE_RATE,
-    channels=1,
-    dtype="int16"
-)
-
-sd.wait()
-
-print("Recording finished.")
-
-# Save recording
-write(
-    AUDIO_FILE,
-    SAMPLE_RATE,
-    audio
-)
-
-print("Audio saved.")
 
 # -----------------------------
-# Speech-to-text
+# Record dynamically
 # -----------------------------
+
+def record_audio():
+
+    print("\nListening...")
+
+    audio_data = []
+    silence_start = None
+    speech_started = False
+
+    block_size = int(SAMPLE_RATE * BLOCK_DURATION)
+
+    with sd.InputStream(
+        samplerate=SAMPLE_RATE,
+        channels=CHANNELS,
+        dtype="float32"
+    ) as stream:
+
+        while True:
+
+            audio, overflowed = stream.read(block_size)
+
+            # Calculate volume
+            volume = np.sqrt(np.mean(audio ** 2))
+
+            audio_data.append(audio.copy())
+
+            # User is speaking
+            if volume > THRESHOLD:
+
+                speech_started = True
+                silence_start = None
+
+                print("Speaking...", end="\r")
+
+            # User is silent
+            else:
+
+                if speech_started:
+
+                    if silence_start is None:
+                        silence_start = time.time()
+
+                    silence_time = time.time() - silence_start
+
+                    print(
+                        f"Silence: {silence_time:.1f}s",
+                        end="\r"
+                    )
+
+                    if silence_time >= SILENCE_DURATION:
+                        break
+
+    print("\nRecording finished.")
+
+    audio_data = np.concatenate(audio_data)
+
+    write(
+        AUDIO_FILE,
+        SAMPLE_RATE,
+        (audio_data * 32767).astype(np.int16)
+    )
+
+    return AUDIO_FILE
+
+
+# -----------------------------
+# Speech to Text
+# -----------------------------
+
+audio_file = record_audio()
 
 print("\nTranscribing...")
 
 segments, info = model.transcribe(
-    AUDIO_FILE,
-    beam_size=5
+    audio_file,
+    language="en",
+    beam_size=5,
+    vad_filter=True
+)
+
+text = " ".join(
+    segment.text.strip()
+    for segment in segments
 )
 
 print("\nDetected language:", info.language)
+print("Probability:", info.language_probability)
 
 print("\nYou said:")
+print(text,"\n")
 
-text = ""
-
-for segment in segments:
-    text += segment.text
-
-print(text)
-
-if info.language == "en":
-    predict_command(text)
-else:
-    print("Please speak in English.")
+predict_command(text)

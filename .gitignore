@@ -2,3 +2,4 @@ loc/
 __pycache__/
 *.wav
 saily_model.pkl
+.env
